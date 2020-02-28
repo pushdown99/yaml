@@ -1,0 +1,85 @@
+hosts: 
+    - kaa-1
+    - kaa-2
+    - kaa-3
+
+kaa-1: 
+    public_ip:  35.194.96.43
+    private_ip: 10.146.0.33
+    control_service_enabled: true
+    bootstrap_service_enabled: true
+    operations_service_enabled: true
+    mongodb_service_enabled: true
+    zk_enabled: true
+    mysql: [ndb_mgmd, mysqld]
+
+kaa-2:
+    public_ip:  35.200.14.48
+    private_ip: 10.146.0.34
+    control_service_enabled: true
+    bootstrap_service_enabled: true
+    operations_service_enabled: true
+    mongodb_service_enabled: true
+    zk_enabled: true
+    mysql: [ndbd]
+
+kaa-3:
+    public_ip:  34.84.68.225
+    private_ip: 10.146.0.35
+    control_service_enabled: true
+    bootstrap_service_enabled: true
+    operations_service_enabled: true
+    mongodb_service_enabled: true
+    zk_enabled: true
+    mysql: [ndbd]
+
+#####################################################################
+#
+#
+
+zookeeper:
+    zk_wait_connection_time: 5
+    zk_max_retry_time: 3000
+    zk_sleep_time: 1000
+    zk_ignore_errors: true
+
+mysql:
+    db_name: kaa
+    dao_max_wait_time: 5
+    hibernate_dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate_format_sql: false
+    hibernate_show_sql: false
+    hibernate_hbm2ddl_auto: update
+    jdbc_driver_className: org.mariadb.jdbc.Driver
+    jdbc_username: sqladmin
+    jdbc_password: admin
+    jdbc_host_port: localhost:3306
+    sql_provider_name: mysql:failover
+
+misc:
+    thrift_host: localhost
+    thrift_port: 9090
+    admin_port:  8080
+    loadmgmt_min_diff: 10000
+    loadmgmt_max_init_redirect_probability: 0.75
+    loadmgmt_max_session_redirect_probability: 0.0
+    recalculation_period: 10
+    user_hash_partitions: 10
+    max_number_neighbor_connections: 3
+    ops_server_history_ttl: 3600
+    worker_thread_pool: 8
+    bootstrap_keys_private_key_location:  keys/bootstrap/private.key
+    bootstrap_keys_public_key_location:   keys/bootstrap/public.key
+    operations_keys_private_key_location: keys/operations/private.key
+    operations_keys_public_key_location:  keys/operations/public.key
+    support_unencrypted_connection: true
+    transport_bind_interface: 0.0.0.0
+    transport_public_interface: 0.0.0.0
+    metrics_enabled: true
+    logs_root_dir: /kaa_log_uploads
+    date_pattern: "'.'yyyy-MM-dd-HH-mm"
+    layout_pattern: "%m%n"
+    load_stats_update_frequency: 10000
+    default_ttl: 604800000
+    additional_plugins_scan_package: ''
+

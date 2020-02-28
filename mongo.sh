@@ -1,0 +1,2 @@
+use kaa
+show collections
