@@ -121,11 +121,14 @@ for host in dict["hosts"]:
     d = "jdbc_password=%s\n" % str(dict["mysql"]["jdbc_password"]).lower()
     f.write(d)
 
+    v = ""
     for h in dict["hosts"]:
-      for r in dict[h]["mysql"]:
-        if r == "mysqld":
-          d = "jdbc_host_port=%s:3306\n" % dict[h]["public_ip"]
-          f.write(d)
+      if str(dict[host]["mariadb_enabled"]).lower() == "true":
+        if v != "":
+          v += ","
+        v += dict[h]["public_ip"]+":3306"
+    d = "jdbc_host_port=%s\n" % v
+    f.write(d)
 
     d = "sql_provider_name=%s\n" % str(dict["mysql"]["sql_provider_name"]).lower()
     f.write(d)
@@ -151,11 +154,40 @@ for host in dict["hosts"]:
     d = "jdbc_password=%s\n" % str(dict["mysql"]["jdbc_password"]).lower()
     f.write(d)
 
+    v = ""
     for h in dict["hosts"]:
-      for r in dict[h]["mysql"]:
-        if r == "mysqld":
-          d = "jdbc_url=jdbc:mysql:failover://%s:3306/kaa\n" % dict[h]["public_ip"]
-          f.write(d)
+      if str(dict[h]["mariadb_enabled"]).lower() == "true":
+        if v != "":
+          v += ","
+        else:
+          v = "jdbc:mysql:failover://"
+        v += dict[h]["public_ip"]+":3306"
+    d = "jdbc_url=%s/kaa\n" % v
+    f.write(d)
+
     f.close()
 
+    ######################################################################################################
+    #
+    # ADMIN-DAO: MYSQL
+    #
+    f = open(host + ".galera.cnf", 'w')
+    d = "[mysqld]\nbinlog_format=ROW\ndefault-storage-engine=innodb\ninnodb_autoinc_lock_mode=2\nbind-address=0.0.0.0\nwsrep_on=ON\nwsrep_provider=/usr/lib/galera/libgalera_smm.so\nwsrep_cluster_name=\"galera_cluster\"\n"
+    f.write(d)
+
+    v = ""
+    for h in dict["hosts"]:
+      if v != "":
+        v += ","
+      else:
+        v ="gcomm://"
+      v = v + dict[h]["public_ip"]
+    d = "wsrep_cluster_address=\"%s\"\nwsrep_sst_method=rsync\n" % v
+    f.write(d)
+    d = "wsrep_node_address=\"%s\"\n" % str(dict[host]["public_ip"]).lower()
+    f.write(d)
+    d = "wsrep_node_name=\"%s\"\n" % str(host).lower()
+    f.write(d)
+
+    f.close()
 
