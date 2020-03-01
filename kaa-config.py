@@ -18,7 +18,9 @@ with open("kaa-config.yaml", 'r') as stream:
 # KAA-NODE
 #
 for host in dict["hosts"]:
-    os.mkdir("./" + host)
+    if not os.path.isdir("./" + host):
+      #print("create '" + host + "' environment.")
+      os.mkdir("./" + host)
 
     f = open("./" + host + "/kaa-node.properties", 'w')
 
