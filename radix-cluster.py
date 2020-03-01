@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import yaml
 import io
+import os
 
 ######################################################################################################
 #
@@ -191,3 +192,22 @@ for host in dict["hosts"]:
 
     f.close()
 
+    ######################################################################################################
+    #
+    # COMMON-DAO: MONGODB
+    #
+    f = open(host + ".common-dao-mongodb.properties", 'w')
+
+    v = ""
+    for h in dict["hosts"]:
+      if str(dict[host]["mongodb_enabled"]).lower() == "true":
+        if v != "":
+          v += ","
+        v += dict[h]["public_ip"]+":27017"
+    d = "servers=%s\n" % v
+    f.write(d)
+
+    d = "db_name=kaa\nwrite_concern=acknowledged\nconnections_per_host=100\nmax_wait_time=120000\nconnection_timeout=5000\nsocket_timeout=0\nsocket_keepalive=false\n"
+    f.write(d)
+
+    f.close()
