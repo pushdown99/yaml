@@ -14,6 +14,7 @@ kaa-1:
     zk_enabled: true
     mariadb_enabled: true
     mongodb_enabled: true
+	myid: 1
 
 kaa-2:
     public_ip:  34.84.170.111
@@ -25,6 +26,7 @@ kaa-2:
     zk_enabled: true
     mariadb_enabled: true
     mongodb_enabled: true
+	myid: 2
 
 kaa-3:
     public_ip:  35.243.119.149
@@ -36,6 +38,7 @@ kaa-3:
     zk_enabled: true
     mariadb_enabled: true
     mongodb_enabled: true
+	myid: 2
 
 kaa-4:
     public_ip:  34.84.16.86
@@ -61,7 +64,7 @@ zookeeper:
 mysql:
     db_name: kaa
     dao_max_wait_time: 5
-    hibernate_dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate_dialect: org.hibernate.dialect.MySQLDialect
     hibernate_format_sql: false
     hibernate_show_sql: false
     hibernate_hbm2ddl_auto: update

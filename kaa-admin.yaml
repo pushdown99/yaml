@@ -1,0 +1,33 @@
+admin:
+    username: admin
+    password: test123
+
+tenant: 
+    - popup
+
+popup:
+    admin: popup
+    developer: [ pushdown99 ]
+    user: [ hyhwang ]
+
+users:
+    popup:
+        firstName: ~
+        lastName: ~
+        mail: popup@naver.com
+        password: test123
+    pushdown99:
+        firstName: ~
+        lastName: ~
+        mail: pushdown99@hotmail.com
+        password: test123
+    haeyun:
+        firstName: ~
+        lastName: ~
+        mail: haeyun@gmail.com
+        password: test123
+    hyhwang:
+        firstName: ~
+        lastName: ~
+        mail: hyhwang@smart5.co.kr
+        password: test123

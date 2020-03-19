@@ -1,0 +1,35 @@
+services:
+    - admin
+    - tcp-bootstrap
+    - tcp-operations
+    - http-bootstrap
+    - http-operations
+    - mysql
+    - mongo
+    - zookeeper
+    - mosquitto
+    - linux-dash
+    - ttys
+
+tty:
+    host: kaa-debian.tric.kr
+    username: rttys
+    password: rttys   
+    ssl-cert: /opt/radix/cert/ttys.crt
+    ssl-key: /opt/radix/cert/ttys.key
+    token: a1d4cdb1a3cd6a0e94aa3599afcddcf5
+
+port: 
+    admin: 8080
+    tcp-bootstrap: 9888
+    tcp-operations: 9997
+    http-bootstrap: 9889
+    http-operations: 9999
+    mysql: 3306
+    mongo: 27017
+    cassandra: 9042
+    postgresql: 5432
+    zookeeper: 2181
+    mosquitto: 1883
+    linux-dash: 3001
+    ttys: 5912
