@@ -1,7 +1,6 @@
 #!/bin/bash
-python kaa-config.py
-python kaa-service.py
-python logs-config.py
-
+#python kaa-config.py
+#python kaa-service.py
+#python logs-config.py
 cp *.py ../bin
 cp *yaml ../yaml

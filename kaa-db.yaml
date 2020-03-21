@@ -1,0 +1,35 @@
+admin:
+    username: root
+    password: test123
+
+tenant:
+    name: popup
+    admin: popup
+    developer: pushdown99
+    application: My Application
+
+users:
+    popup:
+        mail: popup@naver.com
+        password: test123
+        verifier: ~
+    pushdown99:
+        mail: pushdown99@hotmail.com
+        password: test123
+        verifier: ~
+    haeyun:
+        mail: haeyun@gmail.com
+        password: test123
+        verifier: ~
+    hyhwang:
+        mail: hyhwang@smart5.co.kr
+        password: test123
+        verifier: ~
+
+applications:
+    My Application:
+        token: ~
+        sdk:
+            name: My SDK
+            token: ~
+

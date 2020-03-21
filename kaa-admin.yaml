@@ -9,6 +9,7 @@ popup:
     admin: popup
     developer: [ pushdown99 ]
     user: [ hyhwang ]
+    application: [ My Application ]
 
 users:
     popup:
@@ -31,3 +32,42 @@ users:
         lastName: ~
         mail: hyhwang@smart5.co.kr
         password: test123
+
+applications:
+    My Application:
+        token: ~
+        credentials: Trustful
+        ctl: [ DataCollection, Configuration ]
+        sdk:
+            name: My SDK
+            token: ''
+
+ctls:
+    EmptyData:
+        owner: admin
+        schems: configuration
+        fqn: 'org.kaaproject.kaa.schema.system.EmptyData'
+        body: '{"type":"record","name":"EmptyData","namespace":"org.kaaproject.kaa.schema.system","version": 1,"dependencies": [],"displayName":"Empty Data","description":"Auto generated","fields": []}'
+        default: ''
+        base_schems: '{"type":"record","name":"EmptyData","namespace":"org.kaaproject.kaa.schema.system","fields":[{"name":"__uuid","type":[{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"null"],"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Empty Data","description":"Auto generated"}'
+        override_schems: '{"type":"record","name":"EmptyData","namespace":"org.kaaproject.kaa.schema.system","fields":[{"name":"__uuid","type":[{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"null"],"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Empty Data","description":"Auto generated"}'
+        protocol_schems: '{"type":"array","items":{"type":"record","name":"deltaT","namespace":"org.kaaproject.configuration","fields":[{"name":"delta","type":[{"type":"record","name":"EmptyData","namespace":"org.kaaproject.kaa.schema.system","fields":[{"name":"__uuid","type":{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Empty Data","description":"Auto generated"}]}]}}'
+    DataCollection:
+        owner: developer
+        schems: log
+        fqn: 'org.kaaproject.kaa.schema.system.DataCollection'
+        body: '{"type":"record","name":"DataCollection","namespace":"org.kaaproject.kaa.schema.sample","fields":[{"name":"temperature","type":"int"}],"version":1,"dependencies":[],"displayName":"Log Schemas"}'
+        default: '{"temperature":0}'
+        base_schems: ''
+        override_schems: ''
+        protocol_schems: ''
+    Configuration:
+        owner: developer
+        schems: configuration
+        fqn: 'org.kaaproject.kaa.schema.system.Configuration'
+        body: '{"type":"record","name":"Configuration","namespace":"org.kaaproject.kaa.schema.sample","fields":[{"name":"samplePeriod","type":"int","by_default":1}],"version":1,"dependencies":[],"displayName":"Configuration Schemas"}'
+        default: ''
+        base_schems: '{"type":"record","name":"Configuration","namespace":"org.kaaproject.kaa.schema.sample","fields":[{"name":"samplePeriod","type":"int","by_default":1},{"name":"__uuid","type":[{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"null"],"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Configuration Schemas"}'
+        override_schems: '{"type":"record","name":"Configuration","namespace":"org.kaaproject.kaa.schema.sample","fields":[{"name":"samplePeriod","type":["int",{"type":"enum","name":"unchangedT","namespace":"org.kaaproject.configuration","symbols":["unchanged"]}],"by_default":1},{"name":"__uuid","type":[{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"null"],"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Configuration Schemas"}'
+        protocol_schems: '{"type":"array","items":{"type":"record","name":"deltaT","namespace":"org.kaaproject.configuration","fields":[{"name":"delta","type":[{"type":"record","name":"Configuration","namespace":"org.kaaproject.kaa.schema.sample","fields":[{"name":"samplePeriod","type":["int",{"type":"enum","name":"unchangedT","namespace":"org.kaaproject.configuration","symbols":["unchanged"]}],"by_default":1},{"name":"__uuid","type":{"type":"fixed","name":"uuidT","namespace":"org.kaaproject.configuration","size":16},"displayName":"Record Id","fieldAccess":"read_only"}],"version":1,"displayName":"Configuration Schemas"}]}]}}'
+
